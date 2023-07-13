@@ -1,32 +1,29 @@
-# Travel Insurance Prediction Web App 
+# Travel Insurance Willingness Predictor Web App 
+
+## Team 55
+Chuen Kei Ho 101410183 
+Ka Tsun Chan 101420274 
+
 
 
 ## Brief Explanation 
-This Project has a goal to predict whether a customer of travel insurance company is willing to buy its' insurance product. 
-Dataset was downloaded from [kaggle](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). Please upvote the dataset contributor if you guys do not mind.
+The objective of this Project is to forecast the willingness of a travel insurance company's customer to purchase its insurance product.Dataset was downloaded from [kaggle](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). 
 
 The Project itself has theese following features : 
 
 1. Exploratory Data Analysis Overview 
-2. Custom Model Creation 
-3. Prediction 
+2. Prediction 
 
 
 ## Technology Stacks : 
-1. Heroku for Deployment 
+1. Streamlit Community Cloud for Deployment 
 2. streamlit for web page creation 
 3. Data processing packages / libraries such as Pandas, Numpy, seaborn , and etc. 
 4. Machine Learning Model : sklearn, xgboost
    
 
-
-if you curious about the web app you can check [here](https://share.streamlit.io/fakhrirobi/travel_insurance_webapp/main/webapp.py)
-
 ## Project Workflow 
-1. Data Exploration -- data cleaning-visualization-encoding
-2. Model Training -- splitting dataset-cross validation-final model-save model 
-3. Creating interface -- layouting-adding menus
-4. Deploy! 
+1. Data Exploration --> Model Building --> Creating interface --> Deploy on Streamlit
 
 ## Project Structure 
 In order to create this project i create several files including jupyter notebook and python scripts. 
@@ -130,14 +127,3 @@ if you want to customize on your own feel free to download model in my [this web
 |---------|---------|---------|
 |XGBClassifier     |   0.849246      |0.849135|
 |VotingClassifier     |   0.853162      |0.849246|
-
-## Further Improvement 
-1. Serve API With FastAPI 
-2. Moving to Dash for more interact look
-3. Implementing Artifical Neural Networks
-
-## What if you want to contribute 
-just fork my repository and star it 
-
-
-
