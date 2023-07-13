@@ -9,3 +9,4 @@ scipy==1.5.4
 streamlit-on-Hover-tabs
 streamlit_aggrid==0.2.1 
 scikit_learn==1.0
+protobuf~=3.19.0
