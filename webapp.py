@@ -30,14 +30,14 @@ data = pd.read_csv('src/data/travel.csv')
 #     tabs = on_hover_tabs(tabName=['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'], 
 #                          iconName=['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'], default_choice=0
 # )
-tab1, tab2,tab3,tab4,tab5 = st.tabs(['Project Explanation', 'Exploratory Data Analysis','Create your own model','Try Prediction','test from ai '])
-#
+tab1, tab2, tab3,tab4 = st.tabs(['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'])
+
 with tab1 :
-    st.image('assets/Banner_2.jpeg')
+    st.image('assets/insurance_scott_graham.jpg')
     html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
     st.markdown(html_embed,unsafe_allow_html=True)
   
-    url = 'https://raw.githubusercontent.com/ktchan33GBC/WIP_team55_demo/main/README.md?token=GHSAT0AAAAAACCGCJAX5H4TGY42C42BDGGMZFQOPNQ'
+    url = 'https://raw.githubusercontent.com/fakhrirobi/travel_insurance_webapp/main/README.md'
     def get_file_content_as_string(url):
         #for reading readme.md from github
         response = urllib.request.urlopen(url)
@@ -171,19 +171,3 @@ with tab4 :
         #charting 
         fig = px.bar(x=proba_result.columns,y=proba_result.iloc[0],color=proba_result.columns)
         st.plotly_chart(fig)
-        
-with tab5 :
-    st.image('assets/Banner_1.jpeg')
-    html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
-    st.markdown(html_embed,unsafe_allow_html=True)
-  
-    url = 'https://raw.githubusercontent.com/ktchan33GBC/miniproj-team55/main/README.md'
-    def get_file_content_as_string(url):
-        #for reading readme.md from github
-        response = urllib.request.urlopen(url)
-        return response.read().decode("utf-8")
-    st.markdown(get_file_content_as_string(url),unsafe_allow_html=True)
-     
-        
-     
-
