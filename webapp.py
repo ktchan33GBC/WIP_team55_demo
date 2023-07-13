@@ -37,7 +37,7 @@ with tab1 :
     html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
     st.markdown(html_embed,unsafe_allow_html=True)
   
-    url = 'https://raw.githubusercontent.com/fakhrirobi/travel_insurance_webapp/main/README.md'
+    url = 'https://raw.githubusercontent.com/ktchan33GBC/WIP_team55_demo/main/README.md?token=GHSAT0AAAAAACCGCJAX5H4TGY42C42BDGGMZFQOPNQ'
     def get_file_content_as_string(url):
         #for reading readme.md from github
         response = urllib.request.urlopen(url)
