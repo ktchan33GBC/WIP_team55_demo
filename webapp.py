@@ -33,7 +33,7 @@ data = pd.read_csv('src/data/travel.csv')
 tab1, tab2, tab3,tab4 = st.tabs(['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'])
 
 with tab1 :
-    st.image('assets/Banner_2.jpg')
+    st.image('assets/Banner_2.jpeg')
     html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
     st.markdown(html_embed,unsafe_allow_html=True)
   
