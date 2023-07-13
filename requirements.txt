@@ -1,0 +1,10 @@
+streamlit==1.11.0 (done)
+numpy==1.19.5 (done, from anaconda)
+plotly==5.3.1 seaborn==0.11.1 xgboost==1.1.1 matplotlib==3.3.4 (done from pip )
+pandas==1.1.5 (done, from anaconda)
+
+
+scipy==1.5.4 (cant, X know why)cj
+streamlit-on-Hover-tabs (Done)
+streamlit_aggrid==0.2.1 
+scikit_learn==1.0 (done)
