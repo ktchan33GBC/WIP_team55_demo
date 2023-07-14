@@ -157,6 +157,7 @@ with tab4 :
         clf_model = joblib.load(filename)
 
         ### check 
+        st.write(str(len(model_input)))
         st.write(str(model_input[:5]))
         st.write(str(model_input[5:]))
 
