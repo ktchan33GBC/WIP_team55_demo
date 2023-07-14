@@ -156,7 +156,9 @@ with tab4 :
         filename = r'src/xgb_model_without_tuning.pkl'
         clf_model = joblib.load(filename)
 
-        st.write(str(model_input))
+        ### check 
+        st.write(str(model_input[:5]))
+        st.write(str(model_input[5:]))
 
         pred = clf_model.predict(model_input)
         proba=clf_model.predict_proba(model_input)
