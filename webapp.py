@@ -153,7 +153,7 @@ with tab4 :
         
         #loading the trained_model 
         # path = os.path.join(current_dir,')
-        filename = r'src/xgb_model_without_tuning.pkl'
+        filename = r'src/model_train/classifier_model.pkl'
         clf_model = joblib.load(filename)
 
         ### check 
