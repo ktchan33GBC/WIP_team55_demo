@@ -153,7 +153,7 @@ with tab4 :
         
         #loading the trained_model 
         # path = os.path.join(current_dir,')
-        filename = r'src/model_train/classifier_model.pkl'
+        filename = r'src/voting_classifier.pkl'
         clf_model = joblib.load(filename)
 
         ### check 
