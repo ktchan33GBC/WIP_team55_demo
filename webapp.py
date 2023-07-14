@@ -159,6 +159,7 @@ with tab4 :
         ### check 
         st.write(str(len(model_input)))
         st.write(str(model_input[:5]))
+        st.write("check")
         st.write(str(model_input[5:]))
 
         pred = clf_model.predict(model_input)
