@@ -9,6 +9,8 @@ Ka Tsun Chan 101420274 
 ## Brief Explanation 
 The objective of this Project is to forecast the willingness of a travel insurance company's customer to purchase its insurance product.Dataset was downloaded from [kaggle](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). 
 
+[Link to Github Repo](https://github.com/ktchan33GBC/WIP_team55_demo)
+
 The Project itself has theese following features : 
 
 1. Exploratory Data Analysis Overview 
