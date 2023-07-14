@@ -155,7 +155,9 @@ with tab4 :
         # path = os.path.join(current_dir,')
         filename = r'src/xgb_model_without_tuning.pkl'
         clf_model = joblib.load(filename)
-            
+
+        st.write(str(model_input))
+
         pred = clf_model.predict(model_input)
         proba=clf_model.predict_proba(model_input)
         proba_result = pd.DataFrame(proba,columns=['Will not Buy Travel Insurance','Will Buy Travel Insurance'])
