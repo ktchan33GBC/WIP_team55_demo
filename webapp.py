@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 import urllib
 import xgboost 
 import joblib
-
+import pandas_profiling
+from streamlit_pandas_profiling import st_profile_report
 
 from st_aggrid import AgGrid
 
@@ -30,56 +31,73 @@ data = pd.read_csv('src/data/travel.csv')
 #     tabs = on_hover_tabs(tabName=['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'], 
 #                          iconName=['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'], default_choice=0
 # )
-tab1, tab2, tab3,tab4,tab5 = st.tabs(['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction','test from ai '])
+# tab1, tab2, tab3,tab4, = st.tabs(['Project Introduction', 'Exploratory Data Analysis', '唔做：Create your own model','Try Prediction'])
+# with tab1 :
+# with tab2 :
+# with tab3 : 
+# with tab4 : 
+st.image('assets/Banner_2.jpeg')
 
-with tab1 :
-    st.image('assets/Banner_2.jpeg')
-    html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
-    st.markdown(html_embed,unsafe_allow_html=True)
-  
+
+with st.sidebar:
+    
+    st.title("Please Select")
+    choice = st.radio("Navigation",["Project Introduction","Exploratory Data Analysis","唔做：Create your own model","Try Prediction"])
+    st.info(" This is the best Travel Insurance Predictor in the market")
+
+if choice == "Project Introduction":
+    st.title("Project Introduction")
     url = 'https://raw.githubusercontent.com/ktchan33GBC/WIP_team55_demo/main/README.md?token=GHSAT0AAAAAACCGCJAXC4WSFYVHT6OKPP5WZFQW5ZQ'
     def get_file_content_as_string(url):
         #for reading readme.md from github
         response = urllib.request.urlopen(url)
         return response.read().decode("utf-8")
     st.markdown(get_file_content_as_string(url),unsafe_allow_html=True)
-    
-with tab2 :
+
+if choice == "Exploratory Data Analysis":
+
     st.title('Exploratory Data Analysis')
-    dataset_desc_exp = st.expander('Dataset Description',expanded=True)
-    dataset_desc_exp.markdown('''
-    |Column Name  |Description  |
-    |---------|---------|
-    |Age     |   Age Of The Customer      |
-    |Employment     | The Sector In Which Customer Is Employed        |
-    |GraduateOrNot     |  Whether The Customer Is College Graduate Or Not       |
-    |AnnualIncome     |   The Yearly Income Of The Customer In Indian Rupees[Rounded To Nearest 50 Thousand Rupees      |
-    |FamilyMembers     |     Number Of Members In Customer's Family    |
-    |ChronicDisease     |Whether The Customer Suffers From Any Major Disease Or Conditions Like Diabetes/High BP or Asthama,etc         |
-    |FrequentFlyer     |  Derived Data Based On Customer's History Of Booking Air Tickets On Atleast 4 Different Instances In The Last 2 Years[2017-2019]       |
-    |EverTravelledAbroad     | Has The Customer Ever Travelled To A Foreign Country[Not Necessarily Using The Company's Services]        |
-    |TravelInsurance     |   Did The Customer Buy Travel Insurance Package During Introductory Offering Held In The Year 2019      |
+    ## ------ Original Coding Begins----------
+    # dataset_desc_exp = st.expander('Dataset Description',expanded=True)
+    # dataset_desc_exp.markdown('''
+    # |Column Name  |Description  |
+    # |---------|---------|
+    # |Age     |   Age Of The Customer      |
+    # |Employment     | The Sector In Which Customer Is Employed        |
+    # |GraduateOrNot     |  Whether The Customer Is College Graduate Or Not       |
+    # |AnnualIncome     |   The Yearly Income Of The Customer In Indian Rupees[Rounded To Nearest 50 Thousand Rupees      |
+    # |FamilyMembers     |     Number Of Members In Customer's Family    |
+    # |ChronicDisease     |Whether The Customer Suffers From Any Major Disease Or Conditions Like Diabetes/High BP or Asthama,etc         |
+    # |FrequentFlyer     |  Derived Data Based On Customer's History Of Booking Air Tickets On Atleast 4 Different Instances In The Last 2 Years[2017-2019]       |
+    # |EverTravelledAbroad     | Has The Customer Ever Travelled To A Foreign Country[Not Necessarily Using The Company's Services]        |
+    # |TravelInsurance     |   Did The Customer Buy Travel Insurance Package During Introductory Offering Held In The Year 2019      |
                     
-                ''',unsafe_allow_html=True)
-    data_expander = st.expander('Data Inspection')
-    col1,col2 = data_expander.columns(2)
-    with col1 : 
-        st.subheader('Missing Values Inspection: ')
-        missing = pd.DataFrame({"columns":[x for x in data.columns],
-                                "% missing data" :[(x/data.shape[0])*100 for x in data.isnull().sum()] })
-        AgGrid(missing)
-    with col2 : 
-        st.subheader('Dataset Statistics: ')
-        AgGrid(data.describe())
-    col3,col4 = data_expander.columns(2)
-    with col3 : 
-        st.subheader('Exploratory Data Analysis : Categorical Data')
-        visualize_categorical_data(data)
-    with col4 : 
+    #             ''',unsafe_allow_html=True)
+    # data_expander = st.expander('Data Inspection')
+    # col1,col2 = data_expander.columns(2)
+    # with col1 : 
+    #     st.subheader('Missing Values Inspection: ')
+    #     missing = pd.DataFrame({"columns":[x for x in data.columns],
+    #                             "% missing data" :[(x/data.shape[0])*100 for x in data.isnull().sum()] })
+    #     AgGrid(missing)
+    # with col2 : 
+    #     st.subheader('Dataset Statistics: ')
+    #     AgGrid(data.describe())
+    # col3,col4 = data_expander.columns(2)
+    # with col3 : 
+    #     st.subheader('Exploratory Data Analysis : Categorical Data')
+    #     visualize_categorical_data(data)
+    # with col4 : 
         
-        visualize_numerical_data(data)
-            
-with tab3 : 
+    #     visualize_numerical_data(data)
+
+    ## ------ Original Coding Ends ----------
+    profile_report= data.profile_report()
+    st_profile_report(profile_report)
+
+    ## tab 3 will be deleted
+if choice == "唔做：Create your own model":
+     
     st.subheader("Custom Params for creating XGBoost Model in Travel Insurance dataset")
     with st.form("model_customization") : 
         st.write('please input this following value to customize model')
@@ -121,22 +139,22 @@ with tab3 :
 
 
 
+if choice == "Try Prediction":
         
-with tab4 : 
-    st.title("Let's Try to Predict whether your customer want to buy Travel Insurance")
+    st.title(" To Predict if your customer would buy Travel Insurance  (Using Voting_classifier)")
     with st.form('my form') : 
         st.write('To predict whether your customer is willing to buy our insurance product please input your customer candidate data below')
-        age_form = st.number_input('Age',min_value=1)
-        employment_form = st.selectbox('Employment Type',options=('Government Sector', 'Private Sector/Self Employed'))
-        graduate_form = st.selectbox('are your customer a  graduate ? ',options=('Yes','No'))
-        annual_income_form = st.number_input('Please input customer annual income',min_value=1)
-        family_numbers_form = st.number_input('How many family members they have ?',min_value=1)
-        chronicdiseases_form = st.selectbox('have chronic disease ? ',options=('Yes','No'))
-        frequentFlyer_form = st.selectbox('Do they  frequently go travelling ? ',options=('Yes','No'))
-        evertravelledAbroad_form = st.selectbox('did they use to go abroad ? ',options=('Yes','No'))
+        age_form = st.slider('Age',min_value=0,max_value=100,value=20)
+        employment_form = st.selectbox('Type of Employment',options=('Government Sector', 'Private Sector/Self Employed'))
+        graduate_form = st.selectbox('Are your customer a graduate ? ',options=('Yes','No'))
+        annual_income_form = st.number_input('Annual income of your customer ',min_value=1)
+        family_numbers_form = st.slider('How many family members they have ?',min_value=1,max_value=10,value=1)
+        chronicdiseases_form = st.selectbox('Does your customer have any chronic disease ? ',options=('Yes','No'))
+        frequentFlyer_form = st.selectbox('Are they frequent traveller? ',options=('Yes','No'))
+        evertravelledAbroad_form = st.selectbox('Did they usually go abroad ? ',options=('Yes','No'))
         submit_btn = st.form_submit_button()
     if submit_btn : 
-        st.write('Thank you for your input the models are about to tell you')
+        st.write('Thank you for your input , please wait for a moment')
         response_data={'Age':age_form, 'AnnualIncome':annual_income_form, 
                     'FamilyMembers':family_numbers_form, 'ChronicDiseases':chronicdiseases_form,
                     'FrequentFlyer':frequentFlyer_form, 'EverTravelledAbroad':evertravelledAbroad_form,
@@ -178,14 +196,3 @@ with tab4 :
         fig = px.bar(x=proba_result.columns,y=proba_result.iloc[0],color=proba_result.columns)
         st.plotly_chart(fig)
 
-with tab5 :
-    st.image('assets/Banner_1.jpeg')
-    html_embed = '[Photo by Scott Graham on Unsplash](https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
-    st.markdown(html_embed,unsafe_allow_html=True)
-  
-    url = 'https://raw.githubusercontent.com/ktchan33GBC/miniproj-team55/main/README.md'
-    def get_file_content_as_string(url):
-        #for reading readme.md from github
-        response = urllib.request.urlopen(url)
-        return response.read().decode("utf-8")
-    st.markdown(get_file_content_as_string(url),unsafe_allow_html=True)
