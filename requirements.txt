@@ -12,3 +12,5 @@ scikit_learn==1.0
 protobuf~=3.19.0
 lightgbm
 catboost
+pandas_profiling
+streamlit_pandas_profiling
