@@ -43,7 +43,7 @@ with st.sidebar:
     
     st.title("Please Select")
     choice = st.radio("Navigation",["Project Introduction","Exploratory Data Analysis","唔做：Create your own model","Try Prediction"])
-    st.info(" This is the best Travel Insurance Predictor in the market")
+    #st.info(" This is the best Travel Insurance Predictor in the market")
 
 if choice == "Project Introduction":
     st.title("Project Introduction")
