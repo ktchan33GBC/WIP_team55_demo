@@ -212,11 +212,11 @@ if choice == "Try Prediction":
 
         #loading the trained_model 
         # path = os.path.join(current_dir,')
-        # filename = r'src/ann_trained.h5'
+        filename = r'src/ann_trained.h5'
         # clf_model = keras.models.load_model(filename)
-        filename = r'src/linear_regression_trained.pkl'
-        clf_model = joblib.load(filename)
-        # clf_model = load_model(filename)
+        # filename = r'src/linear_regression_trained.pkl'
+        # clf_model = joblib.load(filename)
+        clf_model = load_model(filename)
 
 
         pred = clf_model.predict(model_input)
