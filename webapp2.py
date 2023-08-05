@@ -150,7 +150,7 @@ if choice == "唔做：Create your own model":
         download_btn = download_button(model_download,download_filename=filename,button_text=f'Click here to download {filename}', pickle_it=False)
         st.markdown(download_btn, unsafe_allow_html=True)
         
-    |  |Linear regression  |Voting model |ANN|
+    |---------|Linear regression  |Voting model |ANN|
     |---------|---------|---------|---------|
 
     |MSE  | 33,596,915.85 | 20,861,810.37 | 20,028,624.12 |
