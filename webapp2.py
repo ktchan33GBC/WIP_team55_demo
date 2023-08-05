@@ -107,7 +107,7 @@ if choice == "Exploratory Data Analysis":
 #     #     visualize_numerical_data(data)
 
 #     ## ------ Original Coding Ends ----------
-    profile_report= data.profile_report()
+    profile_report= df.profile_report()
     st_profile_report(profile_report)
 
     ## tab 3 will be deleted
