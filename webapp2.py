@@ -14,13 +14,21 @@ import matplotlib.pyplot as plt
 import urllib
 import xgboost 
 import joblib
+from tensorflow.keras.models import load_model
 # import keras
-# from keras.models import Sequential
-# from keras.layers import Dense
+#import tensorflow as tf
 #import pandas_profiling
+#import ydata_profiling
+
+import sklearn
 #from streamlit_pandas_profiling import st_profile_report
 
 from st_aggrid import AgGrid
+
+# import keras
+# from keras.models import Sequential
+# from keras.layers import Dense
+
 
 sns.set_style('whitegrid')
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -28,7 +36,11 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-data = pd.read_csv('src/data/travel.csv')
+df = pd.read_csv('src/data/insurance.csv')
+# file_id = '1e2z2mVkAhRvZ9JGcTuJFg99mvJwoQdyv'
+# url = 'https://drive.google.com/uc?id={}'.format(file_id)
+# df = pd.read_csv(url)
+
 # tabs = st.sidebar.radio('Page Selector',('Project Explanation','Exploratory Data Analysis','Create your own model','Try Prediction'))
 # with st.sidebar:
 #     tabs = on_hover_tabs(tabName=['Project Explanation', 'Exploratory Data Analysis', 'Create your own model','Try Prediction'], 
@@ -147,55 +159,68 @@ if choice == "Try Prediction":
     st.title(" To Predict if your customer would buy Travel Insurance  (Using Voting_classifier)")
     with st.form('my form') : 
         st.write('To predict whether your customer is willing to buy our insurance product please input your customer candidate data below')
-        age_form = st.slider('Age',min_value=0,max_value=100,value=20)
-        employment_form = st.selectbox('Type of Employment',options=('Government Sector', 'Private Sector/Self Employed'))
-        graduate_form = st.selectbox('Are your customer a graduate ? ',options=('Yes','No'))
-        annual_income_form = st.number_input('Annual income of your customer ',min_value=1)
-        family_numbers_form = st.slider('How many family members they have ?',min_value=1,max_value=10,value=1)
-        chronicdiseases_form = st.selectbox('Does your customer have any chronic disease ? ',options=('Yes','No'))
-        frequentFlyer_form = st.selectbox('Are they frequent traveller? ',options=('Yes','No'))
-        evertravelledAbroad_form = st.selectbox('Did they usually go abroad ? ',options=('Yes','No'))
+        age_form = st.number_input('Age',min_value=1)
+        sex_form = st.selectbox('Sex',options=('female', 'male'))
+        bmi_form = st.number_input('Please input your bmi',min_value=1.0)
+        children_form = st.number_input('How many children you have ? ',min_value=1)
+        smoker_form = st.selectbox('Do you smoke ? ',options=('yes','no'))
+        region_form = st.selectbox('Which region do you live ? ',options=('northeast','northwest','southeast','southwest'))
         submit_btn = st.form_submit_button()
-    if submit_btn : 
-        st.write('Thank you for your input , please wait for a moment')
-        response_data={'Age':age_form, 'AnnualIncome':annual_income_form, 
-                    'FamilyMembers':family_numbers_form, 'ChronicDiseases':chronicdiseases_form,
-                    'FrequentFlyer':frequentFlyer_form, 'EverTravelledAbroad':evertravelledAbroad_form,
-                    'mean_income_per_member' : annual_income_form/(family_numbers_form+1),
-                    'Employment Type_Government Sector':employment_form,
-                    'Employment Type_Private Sector/Self Employed':employment_form, 
-                    'GraduateOrNot_No':graduate_form,'GraduateOrNot_Yes':graduate_form}
 
-        from sklearn import preprocessing
-        label_encoder = preprocessing.LabelEncoder()
-        # start to preprocess 
-        form_process = FormFlow(response_data, label_encoder)
-        model_input = form_process.preprocess_input()
+    if submit_btn : 
+        st.write('Thank you for your input the models are about to tell you')
+        response_data={'age':age_form, 'sex':sex_form, 
+                    'bmi':bmi_form, 'children':children_form,
+                    'smoker':smoker_form, 'region':region_form,
+                }
         
+        ######Data cleaning
+        from sklearn.model_selection import train_test_split
+        from sklearn.preprocessing import LabelEncoder
+        from sklearn.model_selection import GridSearchCV
+        from sklearn.preprocessing import OneHotEncoder
+        from sklearn.preprocessing import StandardScaler
+        from numpy import dtype
+
+       
+        response_data = pd.DataFrame([response_data])
+        response_data.to_csv('response_data.csv')
+        target_columns = ['sex', 'smoker']
+        label_encoders = {}
+        for column in target_columns:
+            label_encoders[column] = LabelEncoder().fit(df[column].values)
+            # Fit
+            response_data[column] = label_encoders[column].transform(response_data[column].values)
+
+        char_scaler = StandardScaler().fit(df[['charges']].values.reshape(-1, 1))
+      
+        bmi_scaler = StandardScaler().fit(df['bmi'].values.reshape(-1, 1))
+        response_data['bmi_scaled'] = bmi_scaler.transform(response_data['bmi'].values.reshape(-1, 1))
+
+        chi_scaler = StandardScaler().fit(df['children'].values.reshape(-1, 1))
+        response_data['children_scaled'] = chi_scaler.transform(response_data['children'].values.reshape(-1, 1))
+
+        response_data= pd.DataFrame(response_data)
+        
+        ohe_region = OneHotEncoder()
+        region = ohe_region.fit(df[['region']])
+        for region_lab, num in zip(ohe_region.categories_[0], range(0,4)):
+            response_data[region_lab] = region.transform(response_data[['region']]).toarray()[:,num]
+        
+        model_input =response_data[['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
+        'northwest', 'southeast', 'southwest']]
+
         #loading the trained_model 
         # path = os.path.join(current_dir,')
-        filename = r'src/linear_regression_trained.pkl'
-        # filename = r'src/ann_trained.h5'
-        clf_model = joblib.load(filename)
+        filename = r'src/ann_trained.h5'
+        # clf_model = keras.models.load_model(filename)
+        #filename = r'src/linear_regression_trained.pkl'
+        # clf_model = joblib.load(filename)
+        clf_model = load_model(filename)
 
-        ### check 
-        st.write(str(len(model_input)))
-        st.write(str(model_input[:5]))
-        st.write("check")
-        st.write(str(model_input[5:]))
 
         pred = clf_model.predict(model_input)
-        proba=clf_model.predict_proba(model_input)
-        proba_result = pd.DataFrame(proba,columns=['Will not Buy Travel Insurance','Will Buy Travel Insurance'])
-        proba_result = proba_result.apply(lambda x : round(100*x,2))
-        if pred == 1 :
-            st.title('Prediction Result : ')
-            st.success('Your Customer is going to buy Travel Insurance')
-        else  : 
-            st.title('Prediction Result :') 
-            st.warning('Your Customer is  not going to buy Travel Insurance') 
+        
+        pred = char_scaler.inverse_transform(np.array(pred).reshape(-1, 1))
+        st.write("predicted charges : " ,np.round(pred[0],0))
 
-    
-        #charting 
-        fig = px.bar(x=proba_result.columns,y=proba_result.iloc[0],color=proba_result.columns)
-        st.plotly_chart(fig)

@@ -14,3 +14,8 @@ lightgbm
 catboost
 pandas_profiling
 streamlit_pandas_profiling
+keras==2.12.0
+tensorflow==2.12.0
+
+
+

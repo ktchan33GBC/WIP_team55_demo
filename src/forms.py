@@ -9,20 +9,20 @@ class FormFlow :
         self.response_data = response_data
         self.label_encoder = encoder
         
-        
-    @st.cache
-    def preprocess_input(self): 
+    #@st.cache    
+    @st.cache_data
+    def preprocess_input(_self): 
         '''
         data-> dataframe
         '''
 
 
-        response_df = pd.DataFrame(self.response_data,index=[1])
+        response_df = pd.DataFrame(_self.response_data,index=[1])
         
         #preprocess 'FrequentFlyer','EverTravelledAbroad','ChronicDiseases column 
         for column in ['FrequentFlyer','EverTravelledAbroad','ChronicDiseases'] : 
             # storing the result of labelling in store_tmp
-            store_tmp = self.label_encoder.fit_transform(response_df[column])
+            store_tmp = _self.label_encoder.fit_transform(response_df[column])
             response_df[column] = store_tmp
         #scaling numerical feature by log10
         num_feature = ['Age','AnnualIncome','FamilyMembers','mean_income_per_member']
@@ -30,7 +30,7 @@ class FormFlow :
             response_df.loc[:,col] = np.log10(response_df.loc[:,col])
         #filling one hot encoded feature 
         def fill_employment() :
-            if self.response_data['Employment Type_Government Sector'] =='Government Sector': 
+            if _self.response_data['Employment Type_Government Sector'] =='Government Sector': 
                 response_df['Employment Type_Government Sector'] = 1
                 response_df['Employment Type_Private Sector/Self Employed']=0
             else : 
@@ -40,7 +40,7 @@ class FormFlow :
             return response_df
 
         def fill_graduate() :
-            if self.response_data['GraduateOrNot_Yes'] =='Yes': 
+            if _self.response_data['GraduateOrNot_Yes'] =='Yes': 
                 response_df['GraduateOrNot_Yes'] = 1
                 response_df['GraduateOrNot_No']=0
             else : 
