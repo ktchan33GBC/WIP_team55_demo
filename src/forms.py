@@ -9,8 +9,8 @@ class FormFlow :
         self.response_data = response_data
         self.label_encoder = encoder
         
-    #@st.cache    
-    @st.cache_data
+    @st.cache    
+    #@st.cache_data
     def preprocess_input(_self): 
         '''
         data-> dataframe
