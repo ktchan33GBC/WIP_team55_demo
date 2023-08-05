@@ -69,7 +69,7 @@ if choice == "Project Introduction":
         return response.read().decode("utf-8")
     st.markdown(get_file_content_as_string(url),unsafe_allow_html=True)
 
-# if choice == "Exploratory Data Analysis":
+if choice == "Exploratory Data Analysis":
 
 #     st.title('Exploratory Data Analysis')
 #     ## ------ Original Coding Begins----------
@@ -107,8 +107,8 @@ if choice == "Project Introduction":
 #     #     visualize_numerical_data(data)
 
 #     ## ------ Original Coding Ends ----------
-#     profile_report= data.profile_report()
-#     st_profile_report(profile_report)
+    profile_report= data.profile_report()
+    st_profile_report(profile_report)
 
     ## tab 3 will be deleted
 if choice == "唔做：Create your own model":
