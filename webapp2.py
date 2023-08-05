@@ -114,42 +114,48 @@ if choice == "Exploratory Data Analysis":
 if choice == "唔做：Create your own model":
      
     st.subheader("Custom Params for creating XGBoost Model in Travel Insurance dataset")
-    with st.form("model_customization") : 
-        st.write('please input this following value to customize model')
-        xgb_param  = {
-            'objective':'binary:logistic',
-            'max_depth': 6,
-            'alpha': 10,
-            'learning_rate': 0.0001,
-            'n_estimators':300
-        }
-        max_depth = st.slider("please input num of max_depth",min_value=1,max_value=50,step=1)
-        alpha = st.slider("please input num of alpha",min_value=1,max_value=30,step=1)
-        learning_rate = st.slider("please input num of learning_rate",min_value=0.0001,max_value=1.0,step=0.0001)
-        n_estimators = st.slider("please input num of n_estimators",min_value=10,max_value=1000,step=10)
-        model_name_to_save = st.text_input("Please input the name of your model to")
-        custom_params = {
-            'objective':'binary:logistic',
-            'max_depth': max_depth,
-            'alpha': alpha,
-            'learning_rate': learning_rate,
-            'n_estimators':n_estimators
-        }
-        start_train_button = st.form_submit_button("Start Training Model")
+    # with st.form("model_customization") : 
+    #     st.write('please input this following value to customize model')
+    #     xgb_param  = {
+    #         'objective':'binary:logistic',
+    #         'max_depth': 6,
+    #         'alpha': 10,
+    #         'learning_rate': 0.0001,
+    #         'n_estimators':300
+    #     }
+    #     max_depth = st.slider("please input num of max_depth",min_value=1,max_value=50,step=1)
+    #     alpha = st.slider("please input num of alpha",min_value=1,max_value=30,step=1)
+    #     learning_rate = st.slider("please input num of learning_rate",min_value=0.0001,max_value=1.0,step=0.0001)
+    #     n_estimators = st.slider("please input num of n_estimators",min_value=10,max_value=1000,step=10)
+    #     model_name_to_save = st.text_input("Please input the name of your model to")
+    #     custom_params = {
+    #         'objective':'binary:logistic',
+    #         'max_depth': max_depth,
+    #         'alpha': alpha,
+    #         'learning_rate': learning_rate,
+    #         'n_estimators':n_estimators
+    #     }
+    #     start_train_button = st.form_submit_button("Start Training Model")
         
-    custom_model = xgboost.XGBClassifier(**custom_params)
-    if start_train_button : 
-        result,trained_model = start_training(custom_model)
-        st.write("Model Result : ")
-        AgGrid(result)
-        figure = generate_chart(result)
-        st.plotly_chart(figure)
-        filename = f'{model_name_to_save}.pkl'
-        with open(filename,'wb') as file : 
-            model_download = joblib.dump(result,file)
-        download_btn = download_button(model_download,download_filename=filename,button_text=f'Click here to download {filename}', pickle_it=False)
-        st.markdown(download_btn, unsafe_allow_html=True)
-        
+    # custom_model = xgboost.XGBClassifier(**custom_params)
+    # if start_train_button : 
+    #     result,trained_model = start_training(custom_model)
+    #     st.write("Model Result : ")
+    #     AgGrid(result)
+    #     figure = generate_chart(result)
+    #     st.plotly_chart(figure)
+    #     filename = f'{model_name_to_save}.pkl'
+    #     with open(filename,'wb') as file : 
+    #         model_download = joblib.dump(result,file)
+    #     download_btn = download_button(model_download,download_filename=filename,button_text=f'Click here to download {filename}', pickle_it=False)
+    #     st.markdown(download_btn, unsafe_allow_html=True)
+    plt.figure(figsize=(12,6))
+    fig = plt.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
+        'northwest', 'southeast', 'southwest'], [ 2.12280389e-02, -1.53580725e-03,  1.69748264e-01,  4.23344352e-02,
+        1.95375310e+00, -3.06206093e-02, -5.43443156e-02, -6.68952426e-02])
+    # plt.show()
+    st.pyplot(fig)        
+
 
 if choice == "Try Prediction":
         
