@@ -17,11 +17,11 @@ import joblib
 from tensorflow.keras.models import load_model
 # import keras
 #import tensorflow as tf
-#import pandas_profiling
+import pandas_profiling
 #import ydata_profiling
 
 import sklearn
-#from streamlit_pandas_profiling import st_profile_report
+from streamlit_pandas_profiling import st_profile_report
 
 from st_aggrid import AgGrid
 
