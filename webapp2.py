@@ -149,8 +149,8 @@ if choice == "唔做：Create your own model":
     #         model_download = joblib.dump(result,file)
     #     download_btn = download_button(model_download,download_filename=filename,button_text=f'Click here to download {filename}', pickle_it=False)
     #     st.markdown(download_btn, unsafe_allow_html=True)
-    plt.figure(figsize=(12,6))
-    fig = plt.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
+    fig, ax = plt.subplots(figsize=(12,6))
+    ax.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
         'northwest', 'southeast', 'southwest'], [ 2.12280389e-02, -1.53580725e-03,  1.69748264e-01,  4.23344352e-02,
         1.95375310e+00, -3.06206093e-02, -5.43443156e-02, -6.68952426e-02])
     # plt.show()
