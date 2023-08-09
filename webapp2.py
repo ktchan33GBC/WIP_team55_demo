@@ -51,7 +51,7 @@ df = pd.read_csv('src/data/insurance.csv')
 # with tab2 :
 # with tab3 : 
 # with tab4 : 
-st.image('assets/Banner_2.jpeg')
+st.image('assets/Banner_2.png')
 
 
 with st.sidebar:
