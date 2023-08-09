@@ -10,13 +10,13 @@ import matplotlib.pyplot as plt
 import urllib
 import xgboost 
 import joblib
-#from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model
 # import keras
 #import tensorflow as tf
-#import pandas_profiling
+import pandas_profiling
 
 import sklearn
-#from streamlit_pandas_profiling import st_profile_report
+from streamlit_pandas_profiling import st_profile_report
 
 from st_aggrid import AgGrid
 
@@ -52,10 +52,10 @@ if choice == "Overview":
         return response.read().decode("utf-8")
     st.markdown(get_file_content_as_string(url),unsafe_allow_html=True)
 
-# if choice == "Exploratory Data Analysis":
+if choice == "Exploratory Data Analysis":
 
-#     profile_report= df.profile_report()
-#     st_profile_report(profile_report)
+    profile_report= df.profile_report()
+    st_profile_report(profile_report)
 
 if choice == "Using Linear Regression":
      

@@ -21,8 +21,8 @@ The Project itself has theese following features :
 
 ## Technology Stacks : 
 1. Streamlit Community Cloud for Deployment 
-2. streamlit for web page creation 
-3. Data processing packages / libraries such as Pandas, Numpy, seaborn , and etc. 
+2. Streamlit for web page creation 
+3. Data processing libraries : Pandas, Numpy, seaborn , and etc. 
 4. Machine /Deep Learning Model : sklearn, keras
    
 
@@ -33,7 +33,6 @@ The Project itself has theese following features :
 In order to create this project i create several files including jupyter notebook and python scripts. 
 1. [modelling.ipynb]() for exploring the dataset from data cleaning to modelling 
 2. [webapp.py]() python script for creating streamlit based web app 
-3. [poetry.lock]() for dependency management 
 
 
 
@@ -128,7 +127,7 @@ voting_classifier_params =
 ````
  -->
 
-if you want to customize on your own feel free to download model in my [this web app](https://share.streamlit.io/fakhrirobi/travel_insurance_webapp/main/webapp.py)
+please share [this web app](https://wip-team55-demo-medical-insur-premium-predictor.streamlit.app/) to your friends.
 
 
 | Metric         | Linear Regression | Voting Model   | ANN         |
