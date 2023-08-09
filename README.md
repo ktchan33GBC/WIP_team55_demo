@@ -131,11 +131,12 @@ voting_classifier_params =
 if you want to customize on your own feel free to download model in my [this web app](https://share.streamlit.io/fakhrirobi/travel_insurance_webapp/main/webapp.py)
 
 
-|||Linear regression |Voting model |ANN|
-|---------||---------|---------|---------|
-|MSE||33,596,915.85     |  20,861,810.37   |20,028,624.12|
-|RMSE||5,796.28   |   4,567.47     |4,475.34|
-|MAE||4,181.19   |   2,528.41     |2,960.15|
-|R-squared||0.78   |   0.83     |0.87|
-|MAPE||46.89%   |   40.61%     |37.29 %|
+| Metric         | Linear Regression | Voting Model   | ANN         |
+|----------------|-------------------|----------------|-------------|
+| MSE            | 33,596,915.85     | 20,861,810.37  | 20,028,624.12 |
+| RMSE           | 5,796.28          | 4,567.47       | 4,475.34    |
+| MAE            | 4,181.19          | 2,528.41       | 2,960.15    |
+| R-squared      | 0.78              | 0.83           | 0.87        |
+| MAPE           | 46.89%            | 40.61%         | 37.29%      |
+
 
