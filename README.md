@@ -1,4 +1,4 @@
-# Travel Insurance Willingness Predictor Web App 
+# Medical Insurance Premium Prediction Web App
 
 ## Team 55
 Chuen Kei Ho 101410183 
@@ -7,21 +7,23 @@ Ka Ho Cheung 101422288
 
 
 ## Brief Explanation 
-The objective of this Project is to forecast the willingness of a travel insurance company's customer to purchase its insurance product.Dataset was downloaded from [kaggle](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). 
+This project's goal is to create a precise machine learning /neural network model to predict medical insurance premium by considering factors like age, BMI, no.of children, smokers….etc..Dataset was downloaded from [kaggle](https://www.kaggle.com/datasets/mirichoi0218/insurance). 
 
 [Link to Github Repo](https://github.com/ktchan33GBC/WIP_team55_demo)
 
 The Project itself has theese following features : 
 
-1. Exploratory Data Analysis Overview 
-2. Prediction 
+1. Overview 
+2. Exploratory Data Analysis
+3. Using Linear Regression
+4. Prediction with ANN Model
 
 
 ## Technology Stacks : 
 1. Streamlit Community Cloud for Deployment 
 2. streamlit for web page creation 
 3. Data processing packages / libraries such as Pandas, Numpy, seaborn , and etc. 
-4. Machine Learning Model : sklearn, xgboost
+4. Machine /Deep Learning Model : sklearn, keras
    
 
 ## Project Workflow 
@@ -32,14 +34,14 @@ In order to create this project i create several files including jupyter noteboo
 1. [modelling.ipynb]() for exploring the dataset from data cleaning to modelling 
 2. [webapp.py]() python script for creating streamlit based web app 
 3. [poetry.lock]() for dependency management 
-4. [Dockerfile]() for containerizing app 
+
 
 
 ## Metrics 
 
 Since the dataset's target class is not well distributed we attempt to use ROC AUC Scoring. 
 The Model is using 
-````
+<!-- ````
 xgb_param  = {
             'objective':'binary:logistic',
             'max_depth': 6,
@@ -124,8 +126,12 @@ voting_classifier_params =
  'gbc__verbose': 0,
  'gbc__warm_start': False}  
 ````
+ -->
+
 if you want to customize on your own feel free to download model in my [this web app](https://share.streamlit.io/fakhrirobi/travel_insurance_webapp/main/webapp.py)
-|Model Name |Accuracy Score  |ROC AUC Score|
-|---------|---------|---------|
-|XGBClassifier     |   0.849246      |0.849135|
-|VotingClassifier     |   0.853162      |0.849246|
+
+
+|||Linear regression |Voting model |ANN|
+|---------||---------|---------|---------|
+|MSE||33,596,915.85     |  20,861,810.37   |20,028,624.12|
+|RMSE||5,796.28   |   4,567.47     |4,475.34|
