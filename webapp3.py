@@ -63,7 +63,7 @@ if choice == "Using Linear Regression":
     ax.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
         'northwest', 'southeast', 'southwest'], [ 2.12280389e-02, -1.53580725e-03,  1.69748264e-01,  4.23344352e-02,
         1.95375310e+00, -3.06206093e-02, -5.43443156e-02, -6.68952426e-02])
-    ax.get_title("Importance of variables in linear regression")
+    ax.set_title("Importance of variables in linear regression")
     
 
     # plt.show()
