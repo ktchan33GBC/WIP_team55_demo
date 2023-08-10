@@ -30,9 +30,6 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 df = pd.read_csv('src/data/insurance.csv')
-# file_id = '1e2z2mVkAhRvZ9JGcTuJFg99mvJwoQdyv'
-# url = 'https://drive.google.com/uc?id={}'.format(file_id)
-# df = pd.read_csv(url)
 
 st.image('assets/Banner_2.png')
 
@@ -40,8 +37,7 @@ st.image('assets/Banner_2.png')
 with st.sidebar:
     
     st.title("Please Select")
-    choice = st.radio("Navigation",["Overview","Exploratory Data Analysis","Using Linear Regression","Try Prediction with ANN Model"])
-    #st.info(" This is the best Travel Insurance Predictor in the market")
+    choice = st.radio("Navigation",["Overview","Exploratory Data Analysis","Sensitivity Analysis","Try Prediction with ANN Model"])
 
 if choice == "Overview":
     st.title("Overview")
@@ -57,19 +53,35 @@ if choice == "Exploratory Data Analysis":
     profile_report= df.profile_report()
     st_profile_report(profile_report)
 
-if choice == "Using Linear Regression":
+if choice == "Sensitivity Analysis":
      
     fig, ax = plt.subplots(figsize=(12,6))
     ax.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
-        'northwest', 'southeast', 'southwest'], [ 2.12280389e-02, -1.53580725e-03,  1.69748264e-01,  4.23344352e-02,
-        1.95375310e+00, -3.06206093e-02, -5.43443156e-02, -6.68952426e-02])
-    ax.set_title("Importance of variables in linear regression")
+        'northwest', 'southeast', 'southwest'], [  2.56975706e+02, -1.85916916e+01, 3.37092552e+02 ,4.25278784e+02,
+  2.36511289e+04, -3.70677326e+02, -6.57864297e+02 ,-8.09799354e+02])
+    ax.set_title("Sensitivity of Each Variable on Medical Insurance Premium")
     
 
     # plt.show()
     st.pyplot(fig)        
 
-    st.write("We would like to know the importance of each variable in the model. The parameter in linear regression will be significant to define the importance.")
+    st.write("""
+             
+             Sensitivity analysis is used in insurance company to illustrate the relevant importance of each variable in the change of insurance, it measures the movement of insurance premium with respect to the change in each variable. The above graph illustrate the sensitivity of each variable on insurance premium. 
+             
+             It is noted the insurance premium is most sensitivity to the smoker status. A smoker would be charged roughly 20000 annually in premium compared to a non-smoker if everything else are the same.
+             
+            The insurance premium is also positively correlated to BMI. 1 point increase in BMI results in approximately 337 dollar increase in the annual premium.The insurance premium is also positively correlated to age. 1 year increase in age results in approximately 257dollar  higher annual premium.
+             
+            From the negative coefficient in the 3 regions, we can interpret that northeast has a higher average insurance premium compared to the other 3 regions although it is not very significant.
+             
+            The sensitivity analysis provides us high level understanding on the relative importance of each variable, but is not the most accurate prediction approach in terms of the MAE/MSE/RMSE/R-square.
+             
+            Therefore, we will introduce the neural network approach in the next section
+             
+            """)
+
+It is noted the insurance premium is most sensitivity to the smoker status. A smoker would be charged roughly 20000 annually in premium compared to a non-smoker if everything else are the same..")
 
 if choice == "Try Prediction with ANN Model":
         
@@ -101,7 +113,6 @@ if choice == "Try Prediction with ANN Model":
 
        
         response_data = pd.DataFrame([response_data])
-        response_data.to_csv('response_data.csv')
         target_columns = ['sex', 'smoker']
         label_encoders = {}
         for column in target_columns:
@@ -140,4 +151,6 @@ if choice == "Try Prediction with ANN Model":
         
         pred = char_scaler.inverse_transform(np.array(pred).reshape(-1, 1))
         st.write("The predicted medical insurance premium of your customer annually : $USD " ,np.round(pred[0],0)[0])
+
+
 
