@@ -56,7 +56,7 @@ if choice == "Exploratory Data Analysis":
 if choice == "Sensitivity Analysis":
      
     fig, ax = plt.subplots(figsize=(12,6))
-    ax.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
+    ax.bar(['age', 'sex', 'bmi', 'children', 'smoker',
         'northwest', 'southeast', 'southwest'], [  2.56975706e+02, -1.85916916e+01, 3.37092552e+02 ,4.25278784e+02,
   2.36511289e+04, -3.70677326e+02, -6.57864297e+02 ,-8.09799354e+02])
     ax.set_title("Sensitivity of Each Variable on Medical Insurance Premium")
@@ -81,7 +81,7 @@ if choice == "Sensitivity Analysis":
              
             """)
     
-    
+
 if choice == "Try Prediction with ANN Model":
         
     st.title(" To predict the medical insurance premium of your customer (Using ANN Model)")
@@ -149,7 +149,7 @@ if choice == "Try Prediction with ANN Model":
         pred = clf_model.predict(model_input)
         
         pred = char_scaler.inverse_transform(np.array(pred).reshape(-1, 1))
-        st.write("The predicted medical insurance premium of your customer annually : $USD " ,np.round(pred[0],0)[0])
+        st.write("The predicted medical insurance premium of your customer annually : $USD " ,str(np.round(pred[0],0)[0]))
 
 
 
