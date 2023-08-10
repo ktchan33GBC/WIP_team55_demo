@@ -71,7 +71,6 @@ if choice == "Using Linear Regression":
 
     st.write("We would like to know the importance of each variable in the model. The parameter in linear regression will be significant to define the importance.")
 
-
 if choice == "Try Prediction with ANN Model":
         
     st.title(" To predict the medical insurance premium of your customer (Using ANN Model)")
@@ -140,5 +139,5 @@ if choice == "Try Prediction with ANN Model":
         pred = clf_model.predict(model_input)
         
         pred = char_scaler.inverse_transform(np.array(pred).reshape(-1, 1))
-        st.write("The predicted medical insurance premium of your customer : $USD " ,np.round(pred[0],0))
+        st.write("The predicted medical insurance premium of your customer annually : $USD " ,np.round(pred[0],0)[0])
 
