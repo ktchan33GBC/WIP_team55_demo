@@ -80,9 +80,8 @@ if choice == "Sensitivity Analysis":
             Therefore, we will introduce the neural network approach in the next section
              
             """)
-
-It is noted the insurance premium is most sensitivity to the smoker status. A smoker would be charged roughly 20000 annually in premium compared to a non-smoker if everything else are the same..")
-
+    
+    
 if choice == "Try Prediction with ANN Model":
         
     st.title(" To predict the medical insurance premium of your customer (Using ANN Model)")
