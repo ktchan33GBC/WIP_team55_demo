@@ -15,7 +15,7 @@ The Project itself has theese following features :
 
 1. Overview 
 2. Exploratory Data Analysis
-3. Using Linear Regression
+3. Sensitivity Analysis
 4. Prediction with ANN Model
 
 
@@ -31,103 +31,12 @@ The Project itself has theese following features :
 
 ## Project Structure 
 In order to create this project i create several files including jupyter notebook and python scripts. 
-1. [modelling.ipynb]() for exploring the dataset from data cleaning to modelling 
-2. [webapp.py]() python script for creating streamlit based web app 
-
-
-
-## Metrics 
-
-Since the dataset's target class is not well distributed we attempt to use ROC AUC Scoring. 
-The Model is using 
-<!-- ````
-xgb_param  = {
-            'objective':'binary:logistic',
-            'max_depth': 6,
-            'alpha': 6,
-            'learning_rate': 0.01,
-            'n_estimators':400
-        }  
-
-voting_classifier_params = 
-{'estimators': [('lgb', LGBMClassifier()),
-  ('rf', RandomForestClassifier()),
-  ('gbc', GradientBoostingClassifier()),
-  ('cat', <catboost.core.CatBoostClassifier at 0x2ae0594bdf0>)],
- 'flatten_transform': True,
- 'n_jobs': None,
- 'verbose': False,
- 'voting': 'soft',
- 'weights': None,
- 'lgb': LGBMClassifier(),
- 'rf': RandomForestClassifier(),
- 'gbc': GradientBoostingClassifier(),
- 'cat': <catboost.core.CatBoostClassifier at 0x2ae0594bdf0>,
- 'lgb__boosting_type': 'gbdt',
- 'lgb__class_weight': None,
- 'lgb__colsample_bytree': 1.0,
- 'lgb__importance_type': 'split',
- 'lgb__learning_rate': 0.1,
- 'lgb__max_depth': -1,
- 'lgb__min_child_samples': 20,
- 'lgb__min_child_weight': 0.001,
- 'lgb__min_split_gain': 0.0,
- 'lgb__n_estimators': 100,
- 'lgb__n_jobs': -1,
- 'lgb__num_leaves': 31,
- 'lgb__objective': None,
- 'lgb__random_state': None,
- 'lgb__reg_alpha': 0.0,
- 'lgb__reg_lambda': 0.0,
- 'lgb__silent': True,
- 'lgb__subsample': 1.0,
- 'lgb__subsample_for_bin': 200000,
- 'lgb__subsample_freq': 0,
- 'rf__bootstrap': True,
- 'rf__ccp_alpha': 0.0,
- 'rf__class_weight': None,
- 'rf__criterion': 'gini',
- 'rf__max_depth': None,
- 'rf__max_features': 'auto',
- 'rf__max_leaf_nodes': None,
- 'rf__max_samples': None,
- 'rf__min_impurity_decrease': 0.0,
- 'rf__min_impurity_split': None,
- 'rf__min_samples_leaf': 1,
- 'rf__min_samples_split': 2,
- 'rf__min_weight_fraction_leaf': 0.0,
- 'rf__n_estimators': 100,
- 'rf__n_jobs': None,
- 'rf__oob_score': False,
- 'rf__random_state': None,
- 'rf__verbose': 0,
- 'rf__warm_start': False,
- 'gbc__ccp_alpha': 0.0,
- 'gbc__criterion': 'friedman_mse',
- 'gbc__init': None,
- 'gbc__learning_rate': 0.1,
- 'gbc__loss': 'deviance',
- 'gbc__max_depth': 3,
- 'gbc__max_features': None,
- 'gbc__max_leaf_nodes': None,
- 'gbc__min_impurity_decrease': 0.0,
- 'gbc__min_impurity_split': None,
- 'gbc__min_samples_leaf': 1,
- 'gbc__min_samples_split': 2,
- 'gbc__min_weight_fraction_leaf': 0.0,
- 'gbc__n_estimators': 100,
- 'gbc__n_iter_no_change': None,
- 'gbc__presort': 'deprecated',
- 'gbc__random_state': None,
- 'gbc__subsample': 1.0,
- 'gbc__tol': 0.0001,
- 'gbc__validation_fraction': 0.1,
- 'gbc__verbose': 0,
- 'gbc__warm_start': False}  
-````
- -->
+1. [insurance_regression.ipynb](https://github.com/ktchan33GBC/WIP_team55_demo/blob/main/insurance_regression.ipynb) for exploring the dataset from data cleaning to modelling 
+2. [webapp3.py](https://github.com/ktchan33GBC/WIP_team55_demo/blob/main/webapp3.py) python script for creating streamlit based web app 
 
 please share [this web app](https://wip-team55-demo-medical-insur-premium-predictor.streamlit.app/) to your friends.
+
+## Metrics 
 
 
 | Metric         | Linear Regression | Voting Model   | ANN         |
