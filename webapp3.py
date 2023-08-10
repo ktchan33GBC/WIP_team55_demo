@@ -59,14 +59,17 @@ if choice == "Exploratory Data Analysis":
 
 if choice == "Using Linear Regression":
      
-    st.subheader("????????????")
-  
     fig, ax = plt.subplots(figsize=(12,6))
     ax.bar(['age', 'sex', 'bmi_scaled', 'children_scaled', 'smoker',
         'northwest', 'southeast', 'southwest'], [ 2.12280389e-02, -1.53580725e-03,  1.69748264e-01,  4.23344352e-02,
         1.95375310e+00, -3.06206093e-02, -5.43443156e-02, -6.68952426e-02])
+    ax.get_title("Importance of variables in linear regression")
+    
+
     # plt.show()
     st.pyplot(fig)        
+
+    st.write("We would like to know the importance of each variable in the model. The parameter in linear regression will be significant to define the importance.")
 
 
 if choice == "Try Prediction with ANN Model":
